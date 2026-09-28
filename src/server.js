@@ -3,6 +3,7 @@
 const express = require('express');
 const store = require('./todoStore');
 const { validateTitle, validateDone, validateId } = require('./validation');
+const { searchTodos, renderResults } = require('./search');
 
 const app = express();
 app.use(express.json());
@@ -10,6 +11,16 @@ app.use(express.static('public'));
 
 app.get('/api/todos', (req, res) => {
   res.json(store.listTodos());
+});
+
+app.get('/api/todos/search', (req, res) => {
+  const results = searchTodos(req.query.q, req.query.tags);
+  res.json(results);
+});
+
+app.get('/todos/search', (req, res) => {
+  const results = searchTodos(req.query.q, req.query.tags);
+  res.send(renderResults(req.query.q, results));
 });
 
 app.post('/api/todos', (req, res) => {
