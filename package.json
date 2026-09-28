@@ -1,0 +1,14 @@
+{
+  "name": "simple-todo-app",
+  "version": "1.0.0",
+  "description": "A small Express todo API used as a code review fixture",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node --test tests/"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "license": "MIT"
+}
